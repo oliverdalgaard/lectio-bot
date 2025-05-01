@@ -51,7 +51,7 @@ async def on_ready():
     if guild.name != GUILD:
         log("Noget gik galt...", "Din .env fil er muligvis ikke opsat korrekt.")
         exit()
-    
+
     log(f"{client.user} aktiv! (User-ID: {client.user.id})", f"Guild: {guild.name} (Guild-ID: {guild.id})")
 
 
@@ -86,7 +86,7 @@ async def on_message(message):
         embed = makeEmbed(f"Næste {len(lektier)} lektier", navn, frist, elevtid)
         log(f'{message.content}', f'Næste {len(lektier)} lektier', user=message.author)
         await message.channel.send(embed=embed)
-    
+
 
     if message.content.startswith('!updatedb') and message.author.id == int(OWNER):
         sqldb.uploadToTable()

@@ -71,7 +71,7 @@ def indsaml(fil):
 
     # Navne
     tags = doc.find_all("span", title="Gå til opgaveafleveringssiden")
-    
+
     names = []
     for i in range(len(tags)):
         child = tags[i].contents
@@ -83,12 +83,12 @@ def indsaml(fil):
 
     # Frist
     tags = doc.find_all("td", class_="nowrap")
-    
+
     frister = []
 
     for i in range(len(tags)):
         frister.append(tags[i].contents)
-    
+
     del frister[2-2::2]
 
     # Elevtid
@@ -98,7 +98,7 @@ def indsaml(fil):
 
     for i in range(len(tags)):
         elevtid.append(str(tags[i].contents))
-        
+
     elevtid = "".join(elevtid)
 
 
@@ -109,7 +109,7 @@ def indsaml(fil):
     names = "".join(names)
     while '  ' in names:
         names = names.replace("  ", " ")
-    
+
     names = removeVals(names, '[')
     names = removeVals(names, "'")
     names = "".join(names)
@@ -120,7 +120,7 @@ def indsaml(fil):
         if names[i] == "":
             names.pop(i)
 
-        
+
 
     frister = flatten(frister)
 
