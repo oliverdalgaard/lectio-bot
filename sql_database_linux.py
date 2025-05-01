@@ -67,10 +67,10 @@ def uploadToTable():
     for i in range(len(names)):
         sql = f"INSERT INTO {db_table} (titel, frist, elevtid, slettet) VALUES (%s, %s, %s, False)"
         val = (names[i], frister[i], elevtid[i])
-    
+
         #print(val)
         mincursor.execute(sql, val)
-        
+
         mindb.commit()
     print("Data uploadet!")
     mincursor.close()
@@ -89,7 +89,7 @@ def showNext(limitval):
 
     for x in resultat:
         resultater.append(x)
-    
+
     #print("Lektier optalt...")
     mincursor.close()
     mindb.close()
@@ -101,11 +101,11 @@ def showNext(limitval):
 def deleteOld():
     mindb = connect()
     mincursor = makeCursor(mindb)
-    
+
     # Fjerner gamle lektier
     sql = f"UPDATE {db_table} SET slettet = True WHERE frist < curtime() AND slettet = False"
     #sql = f"DELETE FROM {db_table} WHERE frist < curtime()"
-    
+
     mincursor.execute(sql)
     mindb.commit()
 
