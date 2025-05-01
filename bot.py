@@ -88,14 +88,15 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
 
-    if message.content.startswith('!updatedb') and message.author.id == int(OWNER):
-        sqldb.uploadToTable()
-        sqldb.deleteOld()
-        log(f'!updatedb', f'Database opdateret...', user=message.author)
-        await message.channel.send(f'Database opdateret...')
-    elif message.content.startswith('!updatedb') and message.author.id != int(OWNER):
-        log(f'Mangler tilladelse til !updatedb', user=message.author)
-        await message.channel.send(f'Mangler tilladelse...')
+    if message.content.startswith('!updatedb'):
+        if message.author.id == int(OWNER):
+            sqldb.uploadToTable()
+            sqldb.deleteOld()
+            log(f'!updatedb', f'Database opdateret...', user=message.author)
+            await message.channel.send(f'Database opdateret...')
+        else:
+            log(f'Mangler tilladelse til !updatedb', user=message.author)
+            await message.channel.send(f'Mangler tilladelse...')
 
     if message.content.startswith('!help'):
         log("!help", user=message.author)
